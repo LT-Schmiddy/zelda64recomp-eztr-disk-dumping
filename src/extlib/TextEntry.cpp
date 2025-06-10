@@ -1,4 +1,5 @@
 #include <format>
+#include <sstream>
 #include <string.h>
 
 #include "TextEntry.hpp"
@@ -14,7 +15,6 @@ TextEntry::TextEntry(uint16_t p_message_id, int p_len, uint8_t* rdram, int32_t s
     for (int32_t i = 0; i < len; i++) {
         message_buffer[i] = MEM_B(starting_address, i);
     }
-
 }
 
 TextEntry::~TextEntry() {
