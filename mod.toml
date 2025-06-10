@@ -5,27 +5,25 @@
 
 # Unique ID of this mod. Pick something long enough that it'll never be the same as any other mod.
 # The name displayed in the mod management menu is separate from this so this doesn't need to be human readable.
-id = "mm_recomp_mod_template"
+id = "MM_EZTR_DumpToDisk"
 
 # Version of this mod.
 version = "1.0.0"
 
 # The name that will show up for this mod in the mod menu. This should be human readable.
-display_name = "MM Recomp Mod Template"
+display_name = "EZTR Dump To Disk Extention"
 
 # The description that will show up when this mod is displayed in the mod menu. This should be human readable.
 description =  """
-This is an example mod for Majora's Mask: Recompiled that can be used as a template for creating mods. \
-When this mod is enabled, you will always perform a quickspin when swinging your sword.
-
-For more details, see https://github.com/Zelda64Recomp/MMRecompModTemplate."""
+This is an extention for EZTR that dumps messages to a C file, rather than simply to console.
+"""
 
 # A short description that will show up in this mod's entry in the mod list. This should be human readable and kept short
 # to prevent it from being cut off due to the limited space.
-short_description = "This is an example mod for Majora's Mask: Recompiled."
+short_description = "This is an extention for EZTR that dumps messages to a C file."
 
 # Authors of this mod.
-authors = [ "Your name here" ]
+authors = [ "LT_Schmiddy" ]
 
 # ID of the target recomp game.
 game_id = "mm"
@@ -36,13 +34,13 @@ minimum_recomp_version = "1.2.0"
 # Dependency mods. Each entry is the mod's ID and then an optional minimum version of the dependency mod.
 dependencies = [
 # Example dependency:
-#    "modname:1.0.0"
+   "MM_EZ_Text_Replacer_API:2.1.0"
 ]
 
 # Native libraries (e.g. DLLs) and the functions they export.
 native_libraries = [
 # Example native library:
-   { name = "mm_recomp_mod_template_extlib", funcs = ["native_lib_test"] }
+   { name = "EZTR_DumpToDisk", funcs = ["native_lib_test"] }
 ]
 
 # Inputs to the mod tool.
@@ -67,7 +65,7 @@ additional_files = [ ]
 [extlib_compiling]
 
 # # Name of the extlib. This information is passed to CMake as the target name for the extlib.
-library_name = "mm_recomp_mod_template_extlib"
+library_name = "EZTR_DumpToDisk"
 
 # Your CMake presets in this file should be designed to handle cross-compilation (using the provided
 # Zig toolchain is recommended). When building the mod, CMake will be invoked 3 times to build
@@ -109,25 +107,25 @@ linux_release_configure_preset = "zig-linux-x64-Release"
 linux_release_build_preset = "zig-linux-x64-Release"
 
 # Mod config options
-[[manifest.config_options]]
-id = "enum_option"
-name = "Enum Option"
-description = "Test enum config option"
-type = "Enum"
-options = [ "First", "Second" ]
-default = "First"
+# [[manifest.config_options]]
+# id = "enum_option"
+# name = "Enum Option"
+# description = "Test enum config option"
+# type = "Enum"
+# options = [ "First", "Second" ]
+# default = "First"
 
-[[manifest.config_options]]
-id = "number_option"
-name = "Number Option"
-description = "Test number config option."
-type = "Number"
-min = 0
-max = 10
-step = 0.1
-precision = 1
-percent = false
-default = 1
+# [[manifest.config_options]]
+# id = "number_option"
+# name = "Number Option"
+# description = "Test number config option."
+# type = "Number"
+# min = 0
+# max = 10
+# step = 0.1
+# precision = 1
+# percent = false
+# default = 1
 
 [[manifest.config_options]]
 id = "string_option"
