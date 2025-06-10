@@ -1,5 +1,9 @@
+#include <format>
+#include <string.h>
+
 #include "TextEntry.hpp"
 #include "lib_recomp.hpp"
+#include "name_lookup.hpp"
 
 TextEntry::TextEntry(uint16_t p_message_id, int p_len, uint8_t* rdram, int32_t starting_address) {
     message_id = p_message_id;
@@ -54,4 +58,54 @@ uint16_t TextEntry::getSecondItemRupees(){
     uint16_t retVal;
     memcpy(&retVal, &message_buffer[7], sizeof(uint16_t));
     return retVal;
+}
+
+std::string TextEntry::getTextBoxTypeString() {
+    return std::string(eztr_textbox_names[getTextBoxType()]);
+}
+
+std::string TextEntry::getTextBoxYPosString() {
+    char retVal[10];
+    snprintf(retVal, 10, "%i", getTextBoxYPos());
+    return std::string(retVal);
+}
+
+std::string TextEntry::getDisplayIconString() {
+    return std::string(eztr_icon_names[getDisplayIcon()]);
+}
+
+std::string TextEntry::getNextMessageIdString() {
+    uint16_t val = getNextMessageId();
+
+    if (val == 0xFFFF) {
+        return std::string(eztr_no_value_string);
+    } else {
+        char retVal[10];
+        snprintf(retVal, 10, "0x%04X", getTextBoxYPos());
+        return std::string(retVal);
+    }
+}
+
+std::string TextEntry::getFirstItemRupeesString() {
+    uint16_t val = getFirstItemRupees();
+
+    if (val == 0xFFFF) {
+        return std::string(eztr_no_value_string);
+    } else {
+        char retVal[10];
+        snprintf(retVal, 10, "0x%04X", getTextBoxYPos());
+        return std::string(retVal);
+    }
+}
+
+std::string TextEntry::getSecondItemRupeesString() {
+    uint16_t val = getSecondItemRupees();
+
+    if (val == 0xFFFF) {
+        return std::string(eztr_no_value_string);
+    } else {
+        char retVal[10];
+        snprintf(retVal, 10, "0x%04X", getTextBoxYPos());
+        return std::string(retVal);
+    }
 }

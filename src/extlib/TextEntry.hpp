@@ -1,6 +1,7 @@
 #include <iostream>
 
 
+
 class TextEntry {
 public:
     TextEntry(uint16_t p_message_id, int p_len, uint8_t* rdram, int32_t starting_address);
@@ -16,4 +17,12 @@ public:
     uint16_t getNextMessageId();
     uint16_t getFirstItemRupees();
     uint16_t getSecondItemRupees();
+
+    std::string getTextBoxTypeString();
+    std::string getTextBoxYPosString();
+    std::string getDisplayIconString();
+    std::string getNextMessageIdString();
+    std::string getFirstItemRupeesString();
+    std::string getSecondItemRupeesString();
+    std::string getContentString();
 };

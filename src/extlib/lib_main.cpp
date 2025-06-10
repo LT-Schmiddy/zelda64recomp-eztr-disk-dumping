@@ -31,4 +31,19 @@ RECOMP_DLL_FUNC(EZTR_DumpToDiskNative_AddMessage) {
 
     text_entries.insert({messageId, entry});
     printf("Message ID %04X copied to map.\n", messageId);
+
+    printf("Testing Values:\n");
+
+    std::string vals[] = {
+        entry->getTextBoxTypeString(),
+        entry->getTextBoxYPosString(),
+        entry->getDisplayIconString(),
+        entry->getNextMessageIdString(),
+        entry->getFirstItemRupeesString(),
+        entry->getSecondItemRupeesString()
+    };
+
+    for (int i = 0; i < 6; i++) {
+        printf("\t%s\n", vals[i].c_str());
+    }
 }

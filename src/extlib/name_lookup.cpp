@@ -1,6 +1,8 @@
 #include "name_lookup.hpp"
 
 
+const char* eztr_no_value_string = "EZTR_NO_VALUE";
+
 const char* eztr_textbox_names[] = {
     "EZTR_STANDARD_TEXT_BOX_I",
     "EZTR_WOODEN_SIGN_BACKGROUND",
