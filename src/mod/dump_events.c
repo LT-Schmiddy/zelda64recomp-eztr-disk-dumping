@@ -19,6 +19,4 @@ EZTR_ON_DUMP_BUFFER(sendBufferToNative) {
     EZTR_DumpToDiskNative_BuildOutputFile((const char*)outdir, (const char*)outname, recomp_get_config_u32("text_dumping_cc_macros"), recomp_get_config_u32("text_dumping_byte_format"));
     recomp_free(outdir);
     recomp_free(outname);
-
-    recomp_printf("Buffer Handled\n");
 }
