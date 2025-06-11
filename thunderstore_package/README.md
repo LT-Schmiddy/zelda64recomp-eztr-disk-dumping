@@ -1,6 +1,6 @@
 # EZTR Dump To Disk Extention
 
-This is an extention for EZTR that dumps messages to a C file, rather than simply to console.
+This is an extention for EZTR that dumps messages to a ready-to-compile C file, rather than simply to console.
 
 The output is saved to your mods folder. Use the config menu to set the file name and formatting options.
 Note that this extension DOES NOT match EZTR's formatting configuration. Use the ones in this mod instead.
