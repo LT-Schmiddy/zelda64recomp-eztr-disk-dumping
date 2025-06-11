@@ -110,26 +110,13 @@ macos_release_build_preset = "zig-macos-aarch64-Release"
 linux_release_configure_preset = "zig-linux-x64-Release"
 linux_release_build_preset = "zig-linux-x64-Release"
 
-# Mod config options
-# [[manifest.config_options]]
-# id = "enum_option"
-# name = "Enum Option"
-# description = "Test enum config option"
-# type = "Enum"
-# options = [ "First", "Second" ]
-# default = "First"
-
-# [[manifest.config_options]]
-# id = "number_option"
-# name = "Number Option"
-# description = "Test number config option."
-# type = "Number"
-# min = 0
-# max = 10
-# step = 0.1
-# precision = 1
-# percent = false
-# default = 1
+[[manifest.config_options]]
+id = "text_dumping_enabled"
+name = "Enabled"
+description = "Lets you enable or disable capturing messages, so as to not dump messages you don't need."
+type = "Enum"
+options = [ "Off", "On" ]
+default = "On"
 
 [[manifest.config_options]]
 id = "output_file_name"

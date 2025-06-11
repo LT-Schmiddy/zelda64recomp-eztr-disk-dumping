@@ -12,6 +12,8 @@ RECOMP_CALLBACK("*", recomp_on_init) void init_dump_file() {
 }
 
 EZTR_ON_DUMP_BUFFER(sendBufferToNative) {
+    if (!recomp_get_config_u32("text_dumping_enabled")) return;
+    
     EZTR_DumpToDiskNative_AddMessage(textId, len, buf->raw.schar);
 
     unsigned char* outdir = recomp_get_mod_folder_path();
