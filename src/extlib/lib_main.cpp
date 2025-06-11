@@ -21,7 +21,7 @@ RECOMP_DLL_FUNC(EZTR_DumpToDiskNative_AddMessage) {
     uint16_t messageId = RECOMP_ARG(uint16_t, 0);
 
     if (text_entries.contains(messageId)) {
-        printf("EZTR_DumpToDiskNative: Message ID %04X already copied.\n", messageId);
+        printf("EZTR_DumpToDiskNative: Message ID 0x%04X already copied.\n", messageId);
         return;
     }
     
@@ -31,7 +31,7 @@ RECOMP_DLL_FUNC(EZTR_DumpToDiskNative_AddMessage) {
     std::shared_ptr<TextEntry> entry = std::make_shared<TextEntry>(messageId, len, rdram, starting_address);
 
     text_entries.insert({messageId, entry});
-    printf("EZTR_DumpToDiskNative: Message ID %04X copied to map.\n", messageId);
+    printf("EZTR_DumpToDiskNative: Message ID 0x%04X copied to map.\n", messageId);
 }
 
 RECOMP_DLL_FUNC(EZTR_DumpToDiskNative_BuildOutputFile) {
