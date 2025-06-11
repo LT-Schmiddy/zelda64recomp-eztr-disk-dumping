@@ -132,7 +132,7 @@ std::string TextEntry::getContentString(bool use_cc_macros, bool pipe_escaped_by
     return ss.str();
 }
 
-std::string TextEntry::constructApiCall(bool use_cc_macros, bool pipe_escaped_bytes, std::string indent_string, int indent_level) {
+std::string TextEntry::constructApiCall(bool use_cc_macros, bool pipe_escaped_bytes, int indent_level, std::string indent_string) {
     std::ostringstream indent_prefix_s;
 
     for (int i = 0; i < indent_level; i++) {

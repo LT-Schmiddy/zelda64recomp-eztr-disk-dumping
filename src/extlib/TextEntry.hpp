@@ -25,5 +25,5 @@ public:
     std::string getFirstItemRupeesString();
     std::string getSecondItemRupeesString();
     std::string getContentString(bool use_cc_macros, bool pipe_escaped_bytes);
-    std::string constructApiCall(bool use_cc_macros, bool pipe_escaped_bytes, std::string indent_string = "    ", int indent_level = 1);
+    std::string constructApiCall(bool use_cc_macros, bool pipe_escaped_bytes, int indent_level = 1, std::string indent_string = "    ");
 };
