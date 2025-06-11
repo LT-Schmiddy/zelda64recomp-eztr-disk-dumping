@@ -151,9 +151,9 @@ std::string TextEntry::constructApiCall(bool use_cc_macros, bool pipe_escaped_by
         + std::format("{}{}{},\n", indent_prefix, indent_string, getNextMessageIdString())
         + std::format("{}{}{},\n", indent_prefix, indent_string, getFirstItemRupeesString())
         + std::format("{}{}{},\n", indent_prefix, indent_string, getSecondItemRupeesString())
-        + std::format("{}{}{},\n", indent_prefix, indent_string, getSecondItemRupeesString())
         + std::format("{}{}{},\n", indent_prefix, indent_string, pipe_escaped_bytes)
-        + std::format("{}{}{}\n", indent_prefix, indent_string, getContentString(use_cc_macros, pipe_escaped_bytes))
+        + std::format("{}{}{},\n", indent_prefix, indent_string, getContentString(use_cc_macros, pipe_escaped_bytes))
+        + std::format("{}{}NULL\n", indent_prefix, indent_string)
         + std::format("{});\n", indent_prefix)
     ;
 }

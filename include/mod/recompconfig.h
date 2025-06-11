@@ -25,4 +25,9 @@ RECOMP_IMPORT("*", void recomp_change_save_file(const char* filename));
 // `recomp_free` (found in `recomputils.h`) MUST be called on the return value of this when the value is no longer in use to prevent a memory leak.
 RECOMP_IMPORT("*", unsigned char* recomp_get_save_file_path());
 
+// Returns a UTF-8 encoded zero-terminated string containing the absolute path to the current mod folder.
+// The return type is an unsigned char pointer to indicate the UTF-8 encoding.
+// `recomp_free` (found in `recomputils.h`) MUST be called on the return value of this when the value is no longer in use to prevent a memory leak.
+RECOMP_IMPORT("*", unsigned char* recomp_get_mod_folder_path());
+
 #endif

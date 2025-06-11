@@ -43,6 +43,7 @@ native_libraries = [
    { name = "EZTR_DumpToDiskNative", funcs = [
       "EZTR_DumpToDiskNative_Init",
       "EZTR_DumpToDiskNative_AddMessage",
+      "EZTR_DumpToDiskNative_BuildOutputFile",
    ] }
 ]
 
@@ -53,7 +54,7 @@ native_libraries = [
 elf_path = "build/mod.elf"
 
 # Output mod filename.
-mod_filename = "mm_recomp_mod_template"
+mod_filename = "MM_EZTR_DumpToDisk"
 
 # Reference symbol files.
 func_reference_syms_file = "Zelda64RecompSyms/mm.us.rev1.syms.toml"
@@ -131,8 +132,24 @@ linux_release_build_preset = "zig-linux-x64-Release"
 # default = 1
 
 [[manifest.config_options]]
-id = "string_option"
-name = "String Option"
-description = "Test string config option."
+id = "output_file_name"
+name = "Output File Name"
+description = "The name of the file to output when dumping."
 type = "String"
-default = "Lorem Ipsum"
+default = "eztr_dump.c"
+
+[[manifest.config_options]]
+id = "text_dumping_byte_format"
+name = "Text Dumping Byte Format"
+description = "How non-printable bytes are dumped, with _ representing hexadecimal digits."
+type = "Enum"
+options = [ "Escapes (\\x__)", "Pipes (|__)" ]
+default = "Escapes (\\x__)"
+
+[[manifest.config_options]]
+id = "text_dumping_cc_macros"
+name = "Text Dumping Control Code Macros"
+description = "Print the EZTR control code macro instead of a byte value when dumping, when available"
+type = "Enum"
+options = [ "Off", "On" ]
+default = "On"
