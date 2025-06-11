@@ -83,7 +83,7 @@ jobs:
         description: ${{ steps.read_thunderstore_manifest.outputs.description }}
         version: ${{ steps.read_thunderstore_manifest.outputs.version }}
         categories: | # valid categories are 'audio', 'misc', 'libraries', 'modpacks', and 'mods'.
-          mods
+          libraries
         file: ./${{ steps.read_thunderstore_manifest.outputs.name }}.thunderstore.zip
 
     
