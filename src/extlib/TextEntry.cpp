@@ -5,6 +5,11 @@
 #include "TextEntry.hpp"
 #include "lib_recomp.hpp"
 #include "name_lookup.hpp"
+#include "util.hpp"
+
+// Copied from eztr_api.h
+#define EZTR_MSG_HEADER_SIZE 11
+#define EZTR_MSG_BUFFER_SIZE 1280
 
 TextEntry::TextEntry(uint16_t p_message_id, int p_len, uint8_t* rdram, int32_t starting_address) {
     message_id = p_message_id;
@@ -60,6 +65,13 @@ uint16_t TextEntry::getSecondItemRupees(){
     return retVal;
 }
 
+// String versions
+std::string TextEntry::getMessageIdString() {
+    char retVal[10];
+    snprintf(retVal, 10, "0x%04X", message_id);
+    return std::string(retVal);
+}
+
 std::string TextEntry::getTextBoxTypeString() {
     return std::string(eztr_textbox_names[getTextBoxType()]);
 }
@@ -108,4 +120,40 @@ std::string TextEntry::getSecondItemRupeesString() {
         snprintf(retVal, 10, "0x%04X", getTextBoxYPos());
         return std::string(retVal);
     }
+}
+
+std::string TextEntry::getContentString(bool use_cc_macros, bool pipe_escaped_bytes) {
+    std::ostringstream ss;
+    ss.put('\"');
+    for (int i = EZTR_MSG_HEADER_SIZE; i < len; i++) {
+        process_char_append(&ss, message_buffer[i], use_cc_macros, pipe_escaped_bytes);
+    }
+    ss.put('\"');
+    return ss.str();
+}
+
+std::string TextEntry::constructApiCall(bool use_cc_macros, bool pipe_escaped_bytes, std::string indent_string, int indent_level) {
+    std::ostringstream indent_prefix_s;
+
+    for (int i = 0; i < indent_level; i++) {
+        indent_prefix_s.write(indent_string.c_str(), indent_string.size());
+    }
+
+    std::string indent_prefix = indent_prefix_s.str();
+
+    // I should really come up with a more efficient version of this... later.
+    return 
+        std::format("{}EZTR_Basic_ReplaceText(\n", indent_prefix)
+        + std::format("{}{}{},\n", indent_prefix, indent_string, getMessageIdString())
+        + std::format("{}{}{},\n", indent_prefix, indent_string, getTextBoxTypeString())
+        + std::format("{}{}{},\n", indent_prefix, indent_string, getTextBoxYPosString())
+        + std::format("{}{}{},\n", indent_prefix, indent_string, getDisplayIconString())
+        + std::format("{}{}{},\n", indent_prefix, indent_string, getNextMessageIdString())
+        + std::format("{}{}{},\n", indent_prefix, indent_string, getFirstItemRupeesString())
+        + std::format("{}{}{},\n", indent_prefix, indent_string, getSecondItemRupeesString())
+        + std::format("{}{}{},\n", indent_prefix, indent_string, getSecondItemRupeesString())
+        + std::format("{}{}{},\n", indent_prefix, indent_string, pipe_escaped_bytes)
+        + std::format("{}{}{}\n", indent_prefix, indent_string, getContentString(use_cc_macros, pipe_escaped_bytes))
+        + std::format("{});\n", indent_prefix)
+    ;
 }

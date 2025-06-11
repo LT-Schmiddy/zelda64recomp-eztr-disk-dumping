@@ -23,3 +23,20 @@ std::string process_char(char character, bool use_cc_macros, bool pipe_escaped_b
     }
     return std::string(buf);
 }
+
+void process_char_append(std::ostringstream* stream, char character, bool use_cc_macros, bool pipe_escaped_bytes) {
+    char buf[50];
+    if (is_printable_char(character)) {
+        snprintf(buf, 50, "%c", character);
+    } else {
+        if (use_cc_macros && msg_control_code_names[(uint8_t)character] != NULL) {
+            snprintf(buf, 50, "\" %s \"", msg_control_code_names[(uint8_t)character]);
+        } else if (pipe_escaped_bytes) {
+            snprintf(buf, 50, "|%02X", character);
+        } else {
+            snprintf(buf, 50, "\" \"\\x%02X\" \"", character);
+        }
+    }
+    
+    stream->write(buf, strnlen(buf, 50));
+}

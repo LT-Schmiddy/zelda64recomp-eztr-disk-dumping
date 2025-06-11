@@ -40,10 +40,13 @@ RECOMP_DLL_FUNC(EZTR_DumpToDiskNative_AddMessage) {
         entry->getDisplayIconString(),
         entry->getNextMessageIdString(),
         entry->getFirstItemRupeesString(),
-        entry->getSecondItemRupeesString()
+        entry->getSecondItemRupeesString(),
+        entry->getContentString(true, false),
     };
 
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 7; i++) {
         printf("\t%s\n", vals[i].c_str());
     }
+
+    printf("%s\n", entry->constructApiCall(true, false).c_str());
 }
