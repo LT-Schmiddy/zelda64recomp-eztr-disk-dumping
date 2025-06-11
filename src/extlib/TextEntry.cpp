@@ -127,6 +127,9 @@ std::string TextEntry::getContentString(bool use_cc_macros, bool pipe_escaped_by
     ss.put('\"');
     for (int i = EZTR_MSG_HEADER_SIZE; i < len; i++) {
         process_char_append(&ss, message_buffer[i], use_cc_macros, pipe_escaped_bytes);
+        if (message_buffer[i] == '\xBF') {
+            break;
+        }
     }
     ss.put('\"');
     return ss.str();
