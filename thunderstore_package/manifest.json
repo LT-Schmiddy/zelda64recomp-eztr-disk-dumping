@@ -1,0 +1,9 @@
+{
+    "name": "EZTR_Dump_To_Disk_Extention",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/LT-Schmiddy/zelda64recomp-eztr-disk-dumping",
+    "description": "This is an extention for EZTR that dumps messages to a C file, rather than simply to console.",
+    "dependencies": [
+        "LT_Schmiddy-EZ_Text_Replacer_API-2.1.0"
+    ]
+}
